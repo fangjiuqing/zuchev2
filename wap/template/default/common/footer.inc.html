@@ -1,0 +1,130 @@
+    <footer class="jq22-footer jq22-footer-fixed" style="display: none">
+        <a href="javascript:;" class="jq22-tabBar-item">
+                    <span class="jq22-tabBar-item-icon">
+                        <i class="icon icon-home"></i>
+                    </span>
+            <span class="jq22-tabBar-item-text">看帖</span>
+        </a>
+        <a href="javascript:;" class="jq22-tabBar-item">
+                    <span class="jq22-tabBar-item-icon">
+                        <i class="icon icon-loan"></i>
+                    </span>
+            <span class="jq22-tabBar-item-text">关注</span>
+        </a>
+        <a href="javascript:;" class="jq22-tabBar-item jq22-tabBar-item-active">
+                    <span class="jq22-tabBar-item-icon">
+                        <i class="icon icon-credit"></i>
+                    </span>
+            <span class="jq22-tabBar-item-text">排行</span>
+        </a>
+        <a href="javascript:;" class="jq22-tabBar-item ">
+                    <span class="jq22-tabBar-item-icon">
+                        <i class="icon icon-me"></i>
+                    </span>
+            <span class="jq22-tabBar-item-text">我的</span>
+        </a>
+    </footer>
+
+
+</section>
+<div class="m-actionsheet" id="actionSheet">
+    <div class="jq22-show-box">
+        <div class="jq22-show-box-title jq22-footer-flex">
+            <div class="b-line jq22-coll-share-box">
+                <a href="javascript:;" class="jq22-coll-share-item">
+                    <div class="jq22-coll-share-img">
+                        <img src="{__CTPL_URL__}images/icon-wx.png" alt="">
+                    </div>
+                    <div class="jq22-coll-share-text">微信好友</div>
+                </a>
+                <a href="javascript:;" class="jq22-coll-share-item">
+                    <div class="jq22-coll-share-img">
+                        <img src="{__CTPL_URL__}images/icon-pyq.png" alt="">
+                    </div>
+                    <div class="jq22-coll-share-text">朋友圈</div>
+                </a>
+                <a href="javascript:;" class="jq22-coll-share-item">
+                    <div class="jq22-coll-share-img">
+                        <img src="{__CTPL_URL__}images/icon-qq.png" alt="">
+                    </div>
+                    <div class="jq22-coll-share-text">QQ</div>
+                </a>
+                <a href="javascript:;" class="jq22-coll-share-item">
+                    <div class="jq22-coll-share-img">
+                        <img src="{__CTPL_URL__}images/icon-kj.png" alt="">
+                    </div>
+                    <div class="jq22-coll-share-text">QQ空间</div>
+                </a>
+                <a href="javascript:;" class="jq22-coll-share-item">
+                    <div class="jq22-coll-share-img">
+                        <img src="{__CTPL_URL__}images/icon-txw.png" alt="">
+                    </div>
+                    <div class="jq22-coll-share-text">腾讯微博</div>
+                </a>
+                <a href="javascript:;" class="jq22-coll-share-item">
+                    <div class="jq22-coll-share-img">
+                        <img src="{__CTPL_URL__}images/icon-wb.png" alt="">
+                    </div>
+                    <div class="jq22-coll-share-text">新浪微博</div>
+                </a>
+            </div>
+            <div class="jq22-coll-cancel">
+                <a href="javascript:;" id="cancel" class="">取消
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="{__CTPL_URL__}js/scrollTab.js"></script>
+<script type="text/javascript" src="{__CTPL_URL__}js/slider.js"></script>
+<script type="text/javascript" src="{__CTPL_URL__}js/layer.js"></script>
+<script src="{__STATIC_URL__}js/libs/layer/mobile/layer.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+<script src="{__STATIC_URL__}js/jquery.tools.js"></script>
+
+<script type="text/javascript">
+    /** 刷新验证码 */
+    $('.weui-vcode-img').on('click' , function() {
+        var url = "{url:'misc-verify-t-~'}" + (new Date()).getMilliseconds();
+        $(this).attr('src' , url);
+    });
+
+    /** 表单提交 */
+    $('.form-submit').on('click' , function() {
+        var form = $('#sform');
+
+        console.log(form);
+        if ( $(this).hasClass('disabled') ) {
+            layer.open({
+                content: '请检查表单项再提交哦'
+                ,btn: '我知道了'
+            });
+            console.log(123);
+            return false;
+        }
+
+        $.ajax({
+            type: form.attr('method'),
+            dataType: 'json',
+            processData: false,
+            data: form.serialize(),
+            url: form.attr('action'),
+            success: function(data, textStatus, xhr) {
+                console.log(data)
+                if ( data.code == 200 ) {
+                    $.toast("操作成功", 2000);
+                }else{
+                    $.toast(data.msg, 'forbidden');
+                }
+
+                if ( data.url != undefined ) {
+                    location.href = data.url
+                }
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                $.toast('请稍后重试', 'forbidden');
+            }
+        })
+    });
+</script>

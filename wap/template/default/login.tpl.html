@@ -1,0 +1,47 @@
+{include common/header.inc}
+</head>
+
+<body ontouchstart>
+{include common/topbar.inc}
+
+<div class="wraper">
+    <div class="weui-cells weui-cells_form">
+        <form action="{url:'login-submit'}" method="post" id="sform" enctype="multipart/form-data">
+            <input type="hidden" name="redirect" value="{$redirect}">
+            <div class="weui-cell" id="mobilewarning" >
+                <div class="weui-cell__hd">
+                    <label class="weui-label"><span class="icon iconfont">&#xe72e;</span>手机号</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="tel" name="data[user_mobile]" id="mobile" placeholder="请输入手机号">
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label"><span class="icon iconfont">&#xe72d;</span>密&nbsp;&nbsp;码</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" name="data[user_password]" type="password" autocomplete />
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label"><span class="icon iconfont">&#xe6fa;</span>验证码</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" name="verify_code" placeholder="请输入验证码" />
+                </div>
+                <div class="weui-cell__ft">
+                  <img class="weui-vcode-img" src="{url:'misc-verify-~'}">
+                </div>
+            </div>
+        </form>
+    </div>
+    <a href="javascript:;" class="weui-btn weui-btn_primary form-submit">立即登录</a>
+</div>
+
+{include common/footer.inc}
+</body>
+</html>

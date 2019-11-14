@@ -1,0 +1,112 @@
+{include common/header.inc}
+<style>
+  .weui-navbar__item{
+      padding: 8px 0;
+      font-size: 14px;
+      border-top:3px solid #fff;
+  }
+
+  .weui-navbar__item.weui-bar__item--on {
+     border-top:3px solid #ff7e00;
+     background-color: #fff;
+  }
+
+  .weui-navbar+.weui-tab__bd {
+     padding-top: 40px;
+ }
+
+ .weui-navbar {
+    background:none;
+ }
+
+ .text-gray{
+    color: #999;
+    font-size: 13px;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+ }
+ .text-light {
+    color: #ff7e00;
+    font-weight: bold;
+ }
+ .text-car-title {
+    color: #29b7b7;
+ }
+</style>
+</head>
+
+<body ontouchstart>
+{include common/topbar.inc}
+
+<!-- 容器 -->
+<div class="weui-tab">
+    <div class="weui-navbar">
+        {foreach $order_type $k $v}
+        <a class="weui-navbar__item {if $k == 1}weui-bar__item--on{/if}" data-oid="{$k}" href="#tab{$k}">
+          {$v}
+        </a>
+        {/foreach}
+    </div>
+
+    <div class="weui-tab__bd">
+    {foreach $order_type $k $v}
+        <div id="tab{$k}" class="weui-tab__bd-item {if $k == 1}weui-tab__bd-item--active{/if}">
+            <div class="weui-panel weui-panel_access">
+                <div class="weui-panel__bd">
+                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                      <div class="weui-media-box__bd">
+                        <p class="weui-media-box__desc">暂无记录</p>
+                      </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    {/foreach}
+
+  </div>
+</div>
+{include common/footer.inc}
+<script>
+var post_data = $.getParamsStorage('choice-car');
+console.log(post_data);
+
+
+var orders = $.parseJSON('{$orders}');
+
+var order_car_url = "{url:'order-view-id-~'}";
+$.each (orders , function (ctype , item) {
+    var ctype_wrap = $('#tab' + ctype + '>.weui-panel>.weui-panel__bd');
+
+    ctype_wrap.empty();
+
+    var ctype_content = '';
+    $.each(item , function (k , v) {
+        ctype_content += '<a href="'+order_car_url+v.order_id+'" class="weui-media-box weui-media-box_appmsg">';
+        ctype_content +=     '<div class="weui-media-box__hd">';
+        ctype_content +=        '<img class="weui-media-box__thumb" src="'+upload_url + v.car_cover+'">';
+        ctype_content +=     '</div>';
+        ctype_content +=     '<div class="weui-media-box__bd">';
+        ctype_content +=         '<p class="weui-media-box__desc">编号：'+v.order_no+'</p>';
+        ctype_content +=         '<h4 class="weui-media-box__title text-car-title">' + v.car_name + '</h4>';
+        ctype_content +=         '<p class="weui-media-box__desc">'+v.car_tag+'</p>';
+        ctype_content +=     '</div>';
+        ctype_content +=     '<span class="weui-cell__ft">';
+        ctype_content +=         '<p class="text-gray">取:'+v.order_start_time +'</p>';
+        ctype_content +=         '<p class="text-gray">还:'+ v.order_end_time +'</p>';
+        ctype_content +=         '<p>';
+        ctype_content +=             '<span class="text-gray">￥</span><span class="text-light">'+v.order_amount+'</span>';
+        ctype_content +=         '</p>';
+        ctype_content +=     '</span>';
+        ctype_content += '</a>';
+    });
+    ctype_wrap.html(ctype_content);
+});
+console.log(orders);
+
+</script>
+</body>
+</html>

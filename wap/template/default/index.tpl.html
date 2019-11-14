@@ -1,0 +1,99 @@
+{include common/header.inc}
+</head>
+<body>
+<section class="jq22-flexView">
+    <header class="jq22-navBar jq22-navBar-fixed b-line">
+        <a href="javascript:;" class="jq22-navBar-item">
+            <i class="icon icon-return"></i>
+        </a>
+        <div class="jq22-center">
+            <span class="jq22-center-title">{$title}</span>
+        </div>
+        <a href="javascript:;" class="jq22-navBar-item" data-ydui-actionsheet="{target:'#actionSheet',closeElement:'#cancel'}">
+            <i class="icon icon-more"></i>
+        </a>
+    </header>
+    <section class="jq22-scrollView">
+        <div class="jq22-search-box b-line">
+            <i class="icon icon-search"></i>
+            <input type="text" placeholder="搜索你感兴趣的超级话题">
+        </div>
+
+        <div class="m-scrolltab" data-ydui-scrolltab>
+            <div class="scrolltab-nav">
+                {foreach $car_type $k $v}
+                <a href="javascript:;" class="scrolltab-item">
+                    <div class="scrolltab-title">{$v}</div>
+                </a>
+                {/foreach}
+            </div>
+            <div class="scrolltab-content">
+
+                    {foreach $cars $k $v}
+                <div class="scrolltab-content-item">
+                    <div class="jq22-sit-list">
+                        {if !empty($v)}
+                        {foreach $v $ck $cv}
+                        <a href="javascript:;" class="jq22-flex b-line">
+                            <div class="jq22-comm-user">
+                                <img src="{__UPLOAD_URL__}{$cv['car_cover']|thumb,400xauto}" alt="">
+                            </div>
+                            <div class="jq22-flex-box">
+                                <h2>{$cv['car_name']}</h2>
+                                <p>日均价￥{$cv['car_rent_price']}</p>
+                                <p>车型：{$cv['car_tag']}</p>
+                            </div>
+                            <div class="jq22-follow choice-car" data-cid="{$cv['car_id']}" data-cname="{$cv['car_name']}" data-ctag="{$cv['car_tag']}" data-cprice="{$cv['car_rent_price']}">
+                                <span><i>+</i></span>
+                                <!-- <a href="{url:'order-preview-cid-%d' , $cv['car_id']}"> -->
+
+                                <!-- </a> -->
+                            </div>
+                        </a>
+                        {/foreach}
+                        {else}
+                        <a href="javascript:;" class="jq22-flex b-line">
+                            <div class="jq22-flex-box">
+                                <h2>暂无数据</h2>
+                            </div>
+                        </a>
+                        {/if}
+                    </div>
+                </div>
+                    {/foreach}
+
+            </div>
+        </div>
+        <div style="height:55px;"></div>
+    </section>
+
+{include common/footer.inc}
+<script type="text/javascript">
+    var agent = "{$agent}";
+
+
+    $('.choice-car').on('click' , function() {
+        var cid = $(this).attr('data-cid');
+        var cname = $(this).attr('data-cname');
+        var ctag = $(this).attr('data-ctag');
+        var cprice = $(this).attr('data-cprice');
+
+        layer.open({
+            title: [
+                '车型确认',
+                'background-color:#fe9601;; color:#fff;'
+            ],
+            content: '已选车辆['+cname+'],日均租金￥' + cprice + '元'
+            ,btn: ['去下单', '再看看']
+            ,yes: function(index){
+                var o_url = "{url:'order-confirm-cid-#CAR#-agent-~'}" + agent;
+                o_url = o_url.replace('#CAR#' , cid);
+                location.href = o_url;
+                layer.close(index);
+            }
+          });
+    });
+</script>
+</body>
+</html>
+

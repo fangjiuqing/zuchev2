@@ -1,0 +1,99 @@
+{include common/header.inc}
+</head>
+
+<body ontouchstart>
+{include common/topbar.inc}
+
+<div class="wraper">
+
+    <div class="weui-cells weui-cells_form">
+        <form action="" method="" id="sform" enctype="multipart/form-data">
+            <input type="hidden" name="data[order_car_id]" value="{$order_info['car_id']}" />
+            <div class="weui-form-preview">
+                <div class="weui-form-preview__hd">
+                    <label class="weui-form-preview__label">订单金额</label>
+                    <em class="weui-form-preview__value">¥{$order_info['order_amount']}</em>
+                </div>
+
+                <div class="weui-form-preview__bd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">订单编号</label>
+                        <span class="weui-form-preview__value">{$order_info['order_no']}</span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">下单时间</label>
+                        <span class="weui-form-preview__value">{$order_info['order_create_date']}</span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">已选车辆</label>
+                        <span class="weui-form-preview__value">{$order_info['car_name']}</span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">车型备注</label>
+                        <span class="weui-form-preview__value">({$order_info['car_type_text']}){$order_info['car_tag']}</span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">日均价</label>
+                        <span class="weui-form-preview__value">￥{$order_info['car_rent_price']}/天</span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">取车时间</label>
+                        <span class="weui-form-preview__value">{$order_info['order_start_time']}</span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">还车时间</label>
+                        <span class="weui-form-preview__value">
+                            {$order_info['order_end_time']}
+                        </span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">租车时长</label>
+                        <span class="weui-form-preview__value">
+                            {$order_info['order_duration_days']}天
+                        </span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">用户姓名</label>
+                        <span class="weui-form-preview__value">
+                            {$order_info['order_user_fullname']}
+                        </span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">联系手机</label>
+                        <span class="weui-form-preview__value">
+                            {$order_info['order_user_mobile']}
+                        </span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">订单状态</label>
+                        <span class="weui-form-preview__value {$order_info['order_status_color']}">
+                            {$order_info['order_status_text']}
+                        </span>
+                    </div>
+
+
+                  </div>
+                  <div class="weui-form-preview__ft">
+                    <a class="weui-form-preview__btn weui-form-preview__btn_default" href="{url:'order'}">返回列表</a>
+                  </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{include common/footer.inc}
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
