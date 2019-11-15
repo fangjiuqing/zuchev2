@@ -27,11 +27,19 @@ class index_module extends base_module {
 
             $ret = $tab->save();
 
+            $st = $tab->fields('SUM(total_amount) as at , SUM(fee_amount) as ft')->get();
+
             if ( $ret['row_id'] > 1 ) {
                 $this->ajaxout([
                     'code' => 200,
                     'msg'  => 'ok',
-                    'data' => $data
+                    'data' => [
+                        'current' => $data,
+                        'overall' => [
+                            'total_amount' => $st['at'],
+                            'fee_amount' => $st['ft'],
+                        ],
+                    ]
                 ]);
             }
         }
