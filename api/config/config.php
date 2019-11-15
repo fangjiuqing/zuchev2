@@ -1,15 +1,14 @@
 <?php
 return [
     'db'    => [
-        'pre'       => '',
+        'pre'       => 'pre_',
         'type'      => 'mysql',
         'mysql'     => [
-            //'default'   => 'host=bdm289907605.my3w.com;port=3306;db=bdm289907605_db;user=bdm289907605;passwd=3yG8tL2mI;charset=utf8;profiling=1',
-             'default'   => 'host=bdm64396441.my3w.com;port=3306;db=bdm64396441_db;user=bdm64396441;passwd=Jxzjrl2019#;charset=utf8;profiling=1',
+             'default'   => 'host=111.231.106.198;port=3306;db=rentcar;user=root;passwd=fang123wei;charset=utf8;profiling=1',
         ],
     ],
    'CACHE_VER'  => 2,
-   'SYS_NAME'  => '福建中京人力有限公司',
+   'SYS_NAME'  => 'API',
    'tpl'        => [
       'style'     => 'default',
       '404_tpl'   => '404.tpl',
@@ -22,7 +21,5 @@ return [
       'charset'   => 'utf-8',
       'allow_php' => false
   ],
-  'ROOR_URL'  => 'http://www.jxzjrl.com/'
 ];
 
-//UPDATE mysql.user SET Password = PASSWORD('3yG8tL2mI') WHERE User = 'bdm289907605' limit 1;
