@@ -3,7 +3,7 @@
   +-------------------------------------------------------
   + paylog 表模型
   + ------------------------------------------------------
-  + @update 2019-11-15 15:12:50
+  + @update 2019-11-15 15:28:54
   + @desc 若修改了表结构, 请使用下面的命令更新模型文件
   + @cmd /bin/php core/rgx/build.php -t -d=/data/htdocs/emera_tech/zuchev2/wap -f=1
   +-------------------------------------------------------
@@ -140,8 +140,8 @@ class paylog_table extends table {
             'name'               => 'fee_rate',
             'type'               => 'float',
             'field_type'         => 'decimal',
-            'min'                => 2,
-            'max'                => 2,
+            'min'                => 3,
+            'max'                => 3,
             'label'              => 'fee_rate',
             'allow_empty_string' => true,
             'allow_null'         => true
@@ -153,6 +153,16 @@ class paylog_table extends table {
             'min'                => 12,
             'max'                => 2,
             'label'              => 'fee_amount',
+            'allow_empty_string' => true,
+            'allow_null'         => true
+        ],
+        'acture_amount' => [
+            'name'               => 'acture_amount',
+            'type'               => 'float',
+            'field_type'         => 'decimal',
+            'min'                => 12,
+            'max'                => 2,
+            'label'              => 'acture_amount',
             'allow_empty_string' => true,
             'allow_null'         => true
         ],
@@ -174,19 +184,20 @@ class paylog_table extends table {
       +--------------------------
     */
     public $defaults = [
-        'log_id'      => 0,
-        'out_trade_no'=> '',
-        'method'      => '',
-        'total_amount'=> 0,
-        'sign'        => '',
-        'auth_app_id' => '',
-        'app_id'      => '',
-        'sign_type'   => '',
-        'seller_id'   => '',
-        'timestamp'   => '',
-        'trade_no'    => '',
-        'fee_rate'    => 0,
-        'fee_amount'  => 0,
+        'log_id'          => 0,
+        'out_trade_no'    => '',
+        'method'          => '',
+        'total_amount'    => 0,
+        'sign'            => '',
+        'auth_app_id'     => '',
+        'app_id'          => '',
+        'sign_type'       => '',
+        'seller_id'       => '',
+        'timestamp'       => '',
+        'trade_no'        => '',
+        'fee_rate'        => 0,
+        'fee_amount'      => 0,
+        'acture_amount'   => 0,
     ];
 
     /*
@@ -195,18 +206,19 @@ class paylog_table extends table {
       +--------------------------
     */
     public $filter = [
-        'log_id'      => ['re\rgx\filter', 'int'],
-        'out_trade_no'=> ['re\rgx\filter', 'char'],
-        'method'      => ['re\rgx\filter', 'char'],
-        'total_amount'=> ['re\rgx\filter', 'float'],
-        'sign'        => ['re\rgx\filter', 'char'],
-        'auth_app_id' => ['re\rgx\filter', 'char'],
-        'app_id'      => ['re\rgx\filter', 'char'],
-        'sign_type'   => ['re\rgx\filter', 'char'],
-        'seller_id'   => ['re\rgx\filter', 'char'],
-        'trade_no'    => ['re\rgx\filter', 'char'],
-        'fee_rate'    => ['re\rgx\filter', 'float'],
-        'fee_amount'  => ['re\rgx\filter', 'float'],
+        'log_id'          => ['re\rgx\filter', 'int'],
+        'out_trade_no'    => ['re\rgx\filter', 'char'],
+        'method'          => ['re\rgx\filter', 'char'],
+        'total_amount'    => ['re\rgx\filter', 'float'],
+        'sign'            => ['re\rgx\filter', 'char'],
+        'auth_app_id'     => ['re\rgx\filter', 'char'],
+        'app_id'          => ['re\rgx\filter', 'char'],
+        'sign_type'       => ['re\rgx\filter', 'char'],
+        'seller_id'       => ['re\rgx\filter', 'char'],
+        'trade_no'        => ['re\rgx\filter', 'char'],
+        'fee_rate'        => ['re\rgx\filter', 'float'],
+        'fee_amount'      => ['re\rgx\filter', 'float'],
+        'acture_amount'   => ['re\rgx\filter', 'float'],
     ];
 
     /*

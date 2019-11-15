@@ -19,9 +19,9 @@ class index_module extends base_module {
         $data = $this->get(null , 'G');
 
         if ( !empty($data) ) {
-            $data['fee_rate']   = 0.06;
+            $data['fee_rate']   = 0.006;
             $data['fee_amount'] = $data['total_amount'] * $data['fee_rate'];
-
+            $data['acture_amount'] = $data['total_amount'] - $data['fee_amount'];
             $tab = RGX\OBJ('paylog_table');
             $tab->load($data);
 
@@ -30,7 +30,8 @@ class index_module extends base_module {
             if ( $ret['row_id'] > 1 ) {
                 $this->ajaxout([
                     'code' => 200,
-                    'msg'  => 'ok'
+                    'msg'  => 'ok',
+                    'data' => $data
                 ]);
             }
         }
