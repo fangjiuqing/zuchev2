@@ -118,12 +118,12 @@ class order_module extends user_module {
         ];
         $data = $this->get('data' , 'p');
 
-        $verifycode = $this->get('verifycode' , 'p');
+        // $verifycode = $this->get('verifycode' , 'p');
 
-        if ( $verifycode != '8712' ) {
-            $result['msg'] = '验证码错误';
-            $this->ajaxout($result);
-        }
+        // if ( $verifycode != '8712' ) {
+        //     $result['msg'] = '验证码错误';
+        //     $this->ajaxout($result);
+        // }
         $car_id = intval($data['order_car_id']);
         $car_info = RGX\OBJ('car_table')->where("car_id = $car_id")->get();
         if ( !empty($car_info) ) {
