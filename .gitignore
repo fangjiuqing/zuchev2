@@ -2,4 +2,6 @@
 *.log
 data/temp/*
 data/cache/*
-config.php
+wap/config/config.php
+admin/config/config.php
+
