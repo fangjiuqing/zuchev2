@@ -28,12 +28,8 @@ class index_module extends base_module {
                     $results[$tp][] = $car;
                 }
             }
-            //$results[$car['car_type']][] = $car;
         }
-//echo '<pre>';print_r($results);
-//         var_dump($car_type,$results);die;
         $this->assign('cars' , $results);
-        //$this->assign('cars' , json_encode($results));
         $this->display('index.tpl');
     }
 
