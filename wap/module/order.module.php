@@ -42,7 +42,8 @@ class order_module extends user_module {
      * @return [type] [description]
      */
     public function confirm_action () {
-        $this->assign('title' , '订单预览');
+        $this->assign('title' , '订单确认');
+        $this->assign('page_title' , '订单确认');
         $car_id = intval($this->get('cid'));
         if ( !$car_id ) {
             $this->redirect('index');
