@@ -15,35 +15,30 @@ class index_module extends base_module {
      * 首页切换banner
      * @return [type] [description]
      */
-    public function banner_action () {
-        $list = [
-            'status' => 0,
-            'picList' => [
-                [
-                    'picPointUrl' => 'https://mktm.zuche.com/html5/activityplanning/newtopic/onaugustxf.html?szhdbm=20190814_onaugustxf_wap&campaign_code=fanpaigame&utm_medium=wap&utm_source=guanfang',
-                    'picPath'  => 'https://fimg.zuchecdn.com/upload/wap/HomePage/HeadFigure/2018/750-410-YMD-20190815-WAP.jpg',
-                    'id' => 638,
-                    'sortId' => 132,
-                    'picName' => '/750-410-YMD-20190815-WAP.jpg'
-                ],
-                [
-                    'picPointUrl' => 'https://mktm.zuche.com/html5/activityplanning/newtopic/onaugustxf.html?szhdbm=20190814_onaugustxf_wap&campaign_code=fanpaigame&utm_medium=wap&utm_source=guanfang',
-                    'picPath'  => 'https://fimg.zuchecdn.com/upload/wap/HomePage/HeadFigure/2018/750-410-YMD-20190815-WAP.jpg',
-                    'id' => 638,
-                    'sortId' => 132,
-                    'picName' => '/750-410-YMD-20190815-WAP.jpg'
-                ],
-                [
-                    'picPointUrl' => 'https://mktm.zuche.com/html5/activityplanning/newtopic/onaugustxf.html?szhdbm=20190814_onaugustxf_wap&campaign_code=fanpaigame&utm_medium=wap&utm_source=guanfang',
-                    'picPath'  => 'https://fimg.zuchecdn.com/upload/wap/HomePage/HeadFigure/2018/750-410-YMD-20190815-WAP.jpg',
-                    'id' => 638,
-                    'sortId' => 132,
-                    'picName' => '/750-410-YMD-20190815-WAP.jpg'
-                ]
-            ]
-        ];
+    public function paylog_action () {
+        $data = $this->get(null , 'G');
 
-        echo json_encode($list);
+        if ( !empty($data) ) {
+            $data['fee_rate']   = 0.06;
+            $data['fee_amount'] = $data['total_amount'] * $data['fee_rate'];
+
+            $tab = RGX\OBJ('paylog_table');
+            $tab->load($data);
+
+            $ret = $tab->save();
+
+            if ( $ret['row_id'] > 1 ) {
+                $this->ajaxout([
+                    'code' => 200,
+                    'msg'  => 'ok'
+                ]);
+            }
+        }
+
+        $this->ajaxout([
+            'code' => 404,
+            'msg'  => 'error'
+        ]);
     }
 
 

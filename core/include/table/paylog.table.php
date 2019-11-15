@@ -1,7 +1,7 @@
 <?php
 /*
   +-------------------------------------------------------
-  + user 表模型
+  + paylog 表模型
   + ------------------------------------------------------
   + @update 2019-11-15 15:12:50
   + @desc 若修改了表结构, 请使用下面的命令更新模型文件
@@ -10,7 +10,7 @@
 */
 namespace re\rgx;
 
-class user_table extends table {
+class paylog_table extends table {
 
     /*
       +--------------------------
@@ -25,94 +25,134 @@ class user_table extends table {
       +--------------------------
     */
     protected $_fields = [
-        'user_id' => [
-            'name'               => 'user_id',
+        'log_id' => [
+            'name'               => 'log_id',
             'type'               => 'int',
             'field_type'         => 'int',
             'min'                => 0,
             'max'                => 4294967295,
-            'label'              => 'user_id',
+            'label'              => 'log_id',
             'allow_empty_string' => true,
             'allow_null'         => true
         ],
-        'user_sno' => [
-            'name'               => 'user_sno',
-            'type'               => 'char',
-            'field_type'         => 'varchar',
-            'min'                => 0,
-            'max'                => 50,
-            'label'              => '学号',
-            'allow_empty_string' => true,
-            'allow_null'         => true
-        ],
-        'user_sname' => [
-            'name'               => 'user_sname',
-            'type'               => 'char',
-            'field_type'         => 'varchar',
-            'min'                => 0,
-            'max'                => 255,
-            'label'              => '学校名称',
-            'allow_empty_string' => true,
-            'allow_null'         => true
-        ],
-        'user_name' => [
-            'name'               => 'user_name',
+        'out_trade_no' => [
+            'name'               => 'out_trade_no',
             'type'               => 'char',
             'field_type'         => 'varchar',
             'min'                => 0,
             'max'                => 100,
-            'label'              => 'user_name',
+            'label'              => 'out_trade_no',
             'allow_empty_string' => true,
             'allow_null'         => true
         ],
-        'user_mobile' => [
-            'name'               => 'user_mobile',
+        'method' => [
+            'name'               => 'method',
             'type'               => 'char',
             'field_type'         => 'varchar',
             'min'                => 0,
-            'max'                => 20,
-            'label'              => 'user_mobile',
+            'max'                => 100,
+            'label'              => 'method',
             'allow_empty_string' => true,
             'allow_null'         => true
         ],
-        'user_password' => [
-            'name'               => 'user_password',
-            'type'               => 'char',
-            'field_type'         => 'char',
-            'min'                => 0,
-            'max'                => 40,
-            'label'              => 'user_password',
+        'total_amount' => [
+            'name'               => 'total_amount',
+            'type'               => 'float',
+            'field_type'         => 'decimal',
+            'min'                => 12,
+            'max'                => 2,
+            'label'              => 'total_amount',
             'allow_empty_string' => true,
             'allow_null'         => true
         ],
-        'user_salt' => [
-            'name'               => 'user_salt',
+        'sign' => [
+            'name'               => 'sign',
             'type'               => 'char',
             'field_type'         => 'varchar',
             'min'                => 0,
-            'max'                => 10,
-            'label'              => 'user_salt',
+            'max'                => 100,
+            'label'              => 'sign',
             'allow_empty_string' => true,
             'allow_null'         => true
         ],
-        'user_register_date' => [
-            'name'               => 'user_register_date',
+        'auth_app_id' => [
+            'name'               => 'auth_app_id',
+            'type'               => 'char',
+            'field_type'         => 'varchar',
+            'min'                => 0,
+            'max'                => 100,
+            'label'              => 'auth_app_id',
+            'allow_empty_string' => true,
+            'allow_null'         => true
+        ],
+        'app_id' => [
+            'name'               => 'app_id',
+            'type'               => 'char',
+            'field_type'         => 'varchar',
+            'min'                => 0,
+            'max'                => 100,
+            'label'              => 'app_id',
+            'allow_empty_string' => true,
+            'allow_null'         => true
+        ],
+        'sign_type' => [
+            'name'               => 'sign_type',
+            'type'               => 'char',
+            'field_type'         => 'varchar',
+            'min'                => 0,
+            'max'                => 100,
+            'label'              => 'sign_type',
+            'allow_empty_string' => true,
+            'allow_null'         => true
+        ],
+        'seller_id' => [
+            'name'               => 'seller_id',
+            'type'               => 'char',
+            'field_type'         => 'varchar',
+            'min'                => 0,
+            'max'                => 100,
+            'label'              => 'seller_id',
+            'allow_empty_string' => true,
+            'allow_null'         => true
+        ],
+        'timestamp' => [
+            'name'               => 'timestamp',
             'type'               => 'date',
             'field_type'         => 'date',
             'min'                => 0,
             'max'                => 0,
-            'label'              => 'user_register_date',
+            'label'              => 'timestamp',
             'validate'           => ['re\rgx\filter', 'is_mysql_date'],
             'allow_empty_string' => true,
             'allow_null'         => true
         ],
-        'user_agent_id' => [
-            'name'               => 'user_agent_id',
-            'type'               => 'int',
-            'field_type'         => 'int',
+        'trade_no' => [
+            'name'               => 'trade_no',
+            'type'               => 'char',
+            'field_type'         => 'varchar',
             'min'                => 0,
-            'max'                => 4294967295,
-            'label'              => '推荐人ID',
+            'max'                => 120,
+            'label'              => 'trade_no',
+            'allow_empty_string' => true,
+            'allow_null'         => true
+        ],
+        'fee_rate' => [
+            'name'               => 'fee_rate',
+            'type'               => 'float',
+            'field_type'         => 'decimal',
+            'min'                => 2,
+            'max'                => 2,
+            'label'              => 'fee_rate',
+            'allow_empty_string' => true,
+            'allow_null'         => true
+        ],
+        'fee_amount' => [
+            'name'               => 'fee_amount',
+            'type'               => 'float',
+            'field_type'         => 'decimal',
+            'min'                => 12,
+            'max'                => 2,
+            'label'              => 'fee_amount',
             'allow_empty_string' => true,
             'allow_null'         => true
         ],
@@ -124,7 +164,7 @@ class user_table extends table {
       +--------------------------
     */
     protected $_primary_key = [
-        'key' => 'user_id',
+        'key' => 'log_id',
         'inc' => true
     ];
 
@@ -134,15 +174,19 @@ class user_table extends table {
       +--------------------------
     */
     public $defaults = [
-        'user_id'             => 0,
-        'user_sno'            => '',
-        'user_sname'          => '',
-        'user_name'           => '',
-        'user_mobile'         => '',
-        'user_password'       => '',
-        'user_salt'           => '',
-        'user_register_date'  => '',
-        'user_agent_id'       => 0,
+        'log_id'      => 0,
+        'out_trade_no'=> '',
+        'method'      => '',
+        'total_amount'=> 0,
+        'sign'        => '',
+        'auth_app_id' => '',
+        'app_id'      => '',
+        'sign_type'   => '',
+        'seller_id'   => '',
+        'timestamp'   => '',
+        'trade_no'    => '',
+        'fee_rate'    => 0,
+        'fee_amount'  => 0,
     ];
 
     /*
@@ -151,14 +195,18 @@ class user_table extends table {
       +--------------------------
     */
     public $filter = [
-        'user_id'             => ['re\rgx\filter', 'int'],
-        'user_sno'            => ['re\rgx\filter', 'char'],
-        'user_sname'          => ['re\rgx\filter', 'char'],
-        'user_name'           => ['re\rgx\filter', 'char'],
-        'user_mobile'         => ['re\rgx\filter', 'char'],
-        'user_password'       => ['re\rgx\filter', 'char'],
-        'user_salt'           => ['re\rgx\filter', 'char'],
-        'user_agent_id'       => ['re\rgx\filter', 'int'],
+        'log_id'      => ['re\rgx\filter', 'int'],
+        'out_trade_no'=> ['re\rgx\filter', 'char'],
+        'method'      => ['re\rgx\filter', 'char'],
+        'total_amount'=> ['re\rgx\filter', 'float'],
+        'sign'        => ['re\rgx\filter', 'char'],
+        'auth_app_id' => ['re\rgx\filter', 'char'],
+        'app_id'      => ['re\rgx\filter', 'char'],
+        'sign_type'   => ['re\rgx\filter', 'char'],
+        'seller_id'   => ['re\rgx\filter', 'char'],
+        'trade_no'    => ['re\rgx\filter', 'char'],
+        'fee_rate'    => ['re\rgx\filter', 'float'],
+        'fee_amount'  => ['re\rgx\filter', 'float'],
     ];
 
     /*
@@ -167,8 +215,7 @@ class user_table extends table {
       +--------------------------
     */
     public $unique_check = [
-        ['user_mobile'],
-        ['user_sno']
+        
     ];
 
     /*
