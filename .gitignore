@@ -2,3 +2,4 @@
 *.log
 data/temp/*
 data/cache/*
+config.php
