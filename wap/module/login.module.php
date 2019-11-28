@@ -9,16 +9,15 @@ class login_module extends base_module {
      */
     public function index_action () {
         session_start();
+
         if ( isset($_SESSION['user']) ) {
-            $this->redirect('order');
+            $this->redirect('my-order');
         }
 
         $redirect = $this->get('redirect');
         $this->assign('redirect' , $redirect);
 
-        $this->assign('title' , '普通登录');
-
-        $this->assign('right_link' , '<a href="' . RGX\router::url('register') . '">注册</a>');
+        $this->assign('title' , '手机号登录');
         $this->display('login.tpl');
     }
 
@@ -36,12 +35,26 @@ class login_module extends base_module {
 
         $data = $this->get('data' , 'p');
 
+        $sms_code = $_SESSION['sms_code'];
         $verify_code = $this->get('verify_code' , 'p');
-        if( $this->sess_get('verify') != $verify_code ) {
+        if( $sms_code != $verify_code ) {
             $result['msg'] = '验证码错误';
             $this->ajaxout($result);
         }
 
+        $redirect = $this->get('redirect' , 'p');
+        if ( $redirect ) {
+            $result['url']  =  $redirect;
+        }else{
+            $result['url']  = RGX\router::url('my-order');
+        }
+
+        $result['code'] = 200;
+        $_SESSION['user'] = $data;
+        $this->ajaxout($result);
+
+
+        die();
         $tab = RGX\OBJ('user_table');
 
         ## 手机号已存在

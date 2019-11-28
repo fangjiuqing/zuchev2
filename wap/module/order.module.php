@@ -2,7 +2,7 @@
 namespace com\default_wap;
 use \re\rgx as RGX;
 
-class order_module extends user_module {
+class order_module extends base_module {
     /**
      * 订单列表
      * @return [type] [description]

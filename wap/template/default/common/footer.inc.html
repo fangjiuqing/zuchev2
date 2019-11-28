@@ -113,9 +113,15 @@
             success: function(data, textStatus, xhr) {
                 console.log(data)
                 if ( data.code == 200 ) {
-                    $.toast("操作成功", 2000);
+                    layer.open({
+                        content: '登录成功'
+                        ,btn: '我知道了'
+                      });
                 }else{
-                    $.toast(data.msg, 'forbidden');
+                    layer.open({
+                        content: data.msg
+                        ,btn: '我知道了'
+                      });
                 }
 
                 if ( data.url != undefined ) {
@@ -123,7 +129,10 @@
                 }
             },
             error: function(xhr, textStatus, errorThrown) {
-                $.toast('请稍后重试', 'forbidden');
+                layer.open({
+                content: '请稍后重试'
+                ,btn: '我知道了'
+              });
             }
         })
     });

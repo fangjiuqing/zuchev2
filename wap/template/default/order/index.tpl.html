@@ -35,49 +35,69 @@
  .text-car-title {
     color: #29b7b7;
  }
+ .weui-tab__bd-item {
+  display: none;
+ }
+ .weui-tab__bd-item--active {
+  display: block;
+ }
 </style>
+
 </head>
 
 <body ontouchstart>
 {include common/topbar.inc}
-
 <!-- 容器 -->
-<div class="weui-tab">
-    <div class="weui-navbar">
-        {foreach $order_type $k $v}
-        <a class="weui-navbar__item {if $k == 1}weui-bar__item--on{/if}" data-oid="{$k}" href="#tab{$k}">
-          {$v}
-        </a>
-        {/foreach}
-    </div>
+<section class="jq22-scrollView">
+    <div class="m-scrolltab" data-ydui-scrolltab style="top: 1px">
+        <div class="scrolltab-nav">
+            {foreach $order_type $k $v}
+            <a href="javascript:;" class="scrolltab-item">
+                <div class="scrolltab-title">{$v}</div>
+            </a>
+            {/foreach}
+        </div>
+        <div class="scrolltab-content">
 
-    <div class="weui-tab__bd">
-    {foreach $order_type $k $v}
-        <div id="tab{$k}" class="weui-tab__bd-item {if $k == 1}weui-tab__bd-item--active{/if}">
-            <div class="weui-panel weui-panel_access">
-                <div class="weui-panel__bd">
-                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                      <div class="weui-media-box__bd">
-                        <p class="weui-media-box__desc">暂无记录</p>
-                      </div>
+                {foreach $orders $k $v}
+            <div class="scrolltab-content-item">
+                <div class="jq22-sit-list">
+                    {if !empty($v)}
+                    {foreach $v $ck $cv}
+                    <a href="{url:'my-view-id-%d' , $cv['order_id']}" class="jq22-flex b-line">
+                        <div class="jq22-comm-user">
+                            <img src="{__UPLOAD_URL__}{$cv['car_cover']|thumb,400xauto}" alt="">
+                        </div>
+                        <div class="jq22-flex-box">
+                            <h2>{$cv['car_name']}</h2>
+                            <p>取：{$cv['order_start_time']} 还：{$cv['order_end_time']}</p>
+                            <p>订单总价：<span class="text-light">￥{$cv['order_amount']}</span></p>
+                        </div>
                     </a>
-
+                    {/foreach}
+                    {else}
+                    <a href="javascript:;" class="jq22-flex b-line">
+                        <div class="jq22-flex-box">
+                            <h2>暂无数据</h2>
+                        </div>
+                    </a>
+                    {/if}
                 </div>
             </div>
-        </div>
-    {/foreach}
+                {/foreach}
 
-  </div>
-</div>
+        </div>
+    </div>
+    <div style="height:55px;"></div>
+</section>
+
 {include common/footer.inc}
 <script>
 var post_data = $.getParamsStorage('choice-car');
-console.log(post_data);
-
 
 var orders = $.parseJSON('{$orders}');
 
-var order_car_url = "{url:'order-view-id-~'}";
+var order_car_url = "{url:'my-view-id-~'}";
 $.each (orders , function (ctype , item) {
     var ctype_wrap = $('#tab' + ctype + '>.weui-panel>.weui-panel__bd');
 

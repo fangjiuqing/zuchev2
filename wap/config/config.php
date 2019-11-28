@@ -28,8 +28,8 @@ return [
   ],
   'static_url'  => 'https://case.isoftware.xyz/carrent/static/',
   'upload_url'  => 'https://case.isoftware.xyz/carrent/data/attachment/',
-  // 'static_url'  => 'http://192.168.0.104/zuchev2/static/',
-  // 'upload_url'  => 'http://192.168.0.104/zuchev2/data/attachment/',
+  'static_url'  => 'http://127.0.01/zuchev2/static/',
+  // 'upload_url'  => 'http://127.0.01/zuchev2/data/attachment/',
 ];
 
 //UPDATE mysql.user SET Password = PASSWORD('3yG8tL2mI') WHERE User = 'bdm289907605' limit 1;

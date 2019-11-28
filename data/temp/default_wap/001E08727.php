@@ -13,25 +13,40 @@
         var upload_url = "<?php echo(UPLOAD_URL);?>";
     </script>
     <!-- head 中 -->
-    <link rel="stylesheet" href="http://localhost/zuchev2/static/style/weui.min.css" />
-    <link rel="stylesheet" href="http://localhost/zuchev2/static/style/jquery-weui.min.css" />
-    <link rel="stylesheet" href="http://localhost/zuchev2/static/style/iconfont.css" />
-    <link rel="stylesheet" href="http://localhost/zuchev2/static/style/common.css" />
+    <link rel="stylesheet" href="http://127.0.01/zuchev2/static/style/weui.min.css" />
+    <link rel="stylesheet" href="http://127.0.01/zuchev2/static/style/jquery-weui.min.css" />
+    <link rel="stylesheet" href="http://127.0.01/zuchev2/static/style/iconfont.css" />
+    <link rel="stylesheet" href="http://127.0.01/zuchev2/static/style/common.css" />
 
     <link href="http://localhost/zuchev2/wap/template/default/css/style.css" rel="stylesheet" type="text/css"/>
 
+    <style type="text/css">
+        .weui-cell {
+            padding:6px 15px;
+        }
+    </style>
 
 
 
 
 
 
+
+<style type="text/css">
+    .weui-label {line-height: 40px;}
+</style>
 </head>
 
 <body ontouchstart>
 <div class="weui-flex">
   <div class="weui-flex__item">
-        <div class="placeholder"> <?php if ($_MODULE != 'index'):?> <span class="fl icon iconfont" onclick="javascript:;history.go(-1);">&#xe6f3;</span> <?php endif;?><span class="logo"><?php if ($title):?><?php echo($title);?><?php else:?>在线租车<?php endif;?></span> <?php if ($right_link):?> <span class="fr"><?php echo($right_link);?></span> <?php endif;?></div>
+        <div class="placeholder"> <?php if ($_MODULE != 'index'):?> <span class="fl icon iconfont" onclick="javascript:;history.go(-1);">&#xe6f3;</span> <?php endif;?><span class="logo"><?php if ($title):?><?php echo($title);?><?php else:?>在线租车<?php endif;?></span>
+
+            <span class="fr">
+                <a href="<?php echo(RGX\router::url('my-order-~')); ?>" class="jq22-navBar-item">
+                    <i class="icon iconfont">&#xe716;</i>
+                </a>
+            </span> <?php if ($right_link):?> <span class="fr"><?php echo($right_link);?></span> <?php endif;?></div>
     </div>
 </div>
 
@@ -66,8 +81,8 @@
                 <div class="weui-cell__bd">
                     <input class="weui-input" type="number" name="verify_code" placeholder="请输入验证码" />
                 </div>
-                <div class="weui-cell__ft">
-                  <img class="weui-vcode-img" src="<?php echo(RGX\router::url('misc-verify-~')); ?>">
+                <div class="weui-cell__ft" style="font-size: 16px;">
+                    <a href="javascript:;" id="obtain" data-flag=1>发送</a>
                 </div>
             </div>
         </form>
@@ -75,7 +90,7 @@
     <a href="javascript:;" class="weui-btn weui-btn_primary form-submit">立即登录</a>
 </div>
 
-    <footer class="jq22-footer jq22-footer-fixed">
+    <footer class="jq22-footer jq22-footer-fixed" style="display: none">
         <a href="javascript:;" class="jq22-tabBar-item">
                     <span class="jq22-tabBar-item-icon">
                         <i class="icon icon-home"></i>
@@ -156,9 +171,9 @@
 <script type="text/javascript" src="http://localhost/zuchev2/wap/template/default/js/scrollTab.js"></script>
 <script type="text/javascript" src="http://localhost/zuchev2/wap/template/default/js/slider.js"></script>
 <script type="text/javascript" src="http://localhost/zuchev2/wap/template/default/js/layer.js"></script>
-<script src="http://localhost/zuchev2/static/js/libs/layer/mobile/layer.js"></script>
+<script src="http://127.0.01/zuchev2/static/js/libs/layer/mobile/layer.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
-<script src="http://localhost/zuchev2/static/js/jquery.tools.js"></script>
+<script src="http://127.0.01/zuchev2/static/js/jquery.tools.js"></script>
 
 <script type="text/javascript">
     /** 刷新验证码 */
@@ -190,9 +205,15 @@
             success: function(data, textStatus, xhr) {
                 console.log(data)
                 if ( data.code == 200 ) {
-                    $.toast("操作成功", 2000);
+                    layer.open({
+                        content: '登录成功'
+                        ,btn: '我知道了'
+                      });
                 }else{
-                    $.toast(data.msg, 'forbidden');
+                    layer.open({
+                        content: data.msg
+                        ,btn: '我知道了'
+                      });
                 }
 
                 if ( data.url != undefined ) {
@@ -200,11 +221,65 @@
                 }
             },
             error: function(xhr, textStatus, errorThrown) {
-                $.toast('请稍后重试', 'forbidden');
+                layer.open({
+                content: '请稍后重试'
+                ,btn: '我知道了'
+              });
             }
         })
     });
 </script>
 
+<script type="text/javascript">
+    $('#obtain').on('click' , function() {
+        var mobile = $('#mobile').val();
+        var pattern = /^1[345789]\d{9}$/;
+        if ( !pattern.test(mobile) ) {
+            layer.open({
+                content: '手机号输入错误'
+                ,btn: '我知道了'
+              });
+            return;
+        }
+
+
+        var flag = $(this).attr('data-flag');
+        if ( flag == 1 ) {
+            var url = "<?php echo(RGX\router::url('misc-sms-mobile-~')); ?>" + mobile;
+            $.getJSON(url , function(d) {
+                if ( d.code == 200 ) {
+                  layer.open({
+                      content: d.msg
+                      ,btn: '我知道了'
+                  });
+
+                    var time = 60;
+
+                    if( time == 60 ){
+                       var time1 = setInterval(function(){
+                           if(time == 0){
+                               $("#obtain").html("重新发送");
+                               $("#obtain").attr("data-flag" , "1");
+                               time = 60;
+                               clearInterval(time1);
+                           }else{
+                               $("#obtain").attr("data-flag" , "0");
+                               $("#obtain").html("重新发送("+time+")");
+                               time--;
+                           }
+                           }, 1000);
+                   }
+               }else{
+                   layer.open({
+                        content: '发送失败，请稍后重试'
+                        ,btn: '我知道了'
+                    });
+               }
+            });
+            console.log('send api');
+        }
+        console.log(mobile);
+    });
+</script>
 </body>
 </html>
