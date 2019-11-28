@@ -37,49 +37,22 @@ class login_module extends base_module {
 
         $sms_code = $_SESSION['sms_code'];
         $verify_code = $this->get('verify_code' , 'p');
-        if( $sms_code != $verify_code ) {
+
+        if ( $sms_code == $verify_code ) {
+            $redirect = $this->get('redirect' , 'p');
+            if ( $redirect ) {
+                $result['url']  =  $redirect;
+            }else{
+                $result['url']  = RGX\router::url('my-order');
+            }
+
+            $result['code'] = 200;
+            $_SESSION['user'] = $data;
+        }else{
             $result['msg'] = '验证码错误';
             $this->ajaxout($result);
         }
 
-        $redirect = $this->get('redirect' , 'p');
-        if ( $redirect ) {
-            $result['url']  =  $redirect;
-        }else{
-            $result['url']  = RGX\router::url('my-order');
-        }
-
-        $result['code'] = 200;
-        $_SESSION['user'] = $data;
-        $this->ajaxout($result);
-
-
-        die();
-        $tab = RGX\OBJ('user_table');
-
-        ## 手机号已存在
-        $user = $tab->where("user_mobile = '" . $data['user_mobile'] ."'")->limit(1)->get();
-        if ( empty($user) ) {
-            $result['msg'] = '用户不存在';
-            $this->ajaxout($result);
-        }
-
-        $password = sha1(md5($data['user_password']) . $user['user_salt']);
-        if ( $password != $user['user_password'] ) {
-            $result['msg'] = '密码错误';
-            $this->ajaxout($result);
-        }
-
-        $redirect = $this->get('redirect' , 'p');
-        if ( $redirect ) {
-            $result['url']  =  $redirect;
-        }else{
-            $result['url']  = RGX\router::url('order');
-        }
-
-        $result['code'] = 200;
-        //$this->set_login($user);
-        $_SESSION['user'] = $user;
         $this->ajaxout($result);
     }
 
