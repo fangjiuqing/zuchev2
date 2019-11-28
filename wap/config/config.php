@@ -28,7 +28,7 @@ return [
   ],
   'static_url'  => 'https://case.isoftware.xyz/carrent/static/',
   'upload_url'  => 'https://case.isoftware.xyz/carrent/data/attachment/',
-  'static_url'  => 'http://127.0.01/zuchev2/static/',
+  //'static_url'  => 'http://127.0.01/zuchev2/static/',
   // 'upload_url'  => 'http://127.0.01/zuchev2/data/attachment/',
 ];
 
