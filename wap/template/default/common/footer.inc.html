@@ -1,8 +1,8 @@
-    <footer class="jq22-footer jq22-footer-fixed" style="display: none">
-        <a href="javascript:;" class="jq22-tabBar-item">
-                    <span class="jq22-tabBar-item-icon">
-                        <i class="icon icon-home"></i>
-                    </span>
+    <footer class="jq22-footer jq22-footer-fixed">
+        <!-- <a href="javascript:;" class="jq22-tabBar-item">
+            <span class="jq22-tabBar-item-icon">
+                <i class="icon icon-home"></i>
+            </span>
             <span class="jq22-tabBar-item-text">看帖</span>
         </a>
         <a href="javascript:;" class="jq22-tabBar-item">
@@ -10,17 +10,17 @@
                         <i class="icon icon-loan"></i>
                     </span>
             <span class="jq22-tabBar-item-text">关注</span>
+        </a> -->
+        <a href="{url:'index-index'}" class="jq22-tabBar-item {if $_MODULE == 'index'} jq22-tabBar-item-active {/if}">
+            <span class="jq22-tabBar-item-icon">
+                <i class="icon icon-credit"></i>
+            </span>
+            <span class="jq22-tabBar-item-text">预定</span>
         </a>
-        <a href="javascript:;" class="jq22-tabBar-item jq22-tabBar-item-active">
-                    <span class="jq22-tabBar-item-icon">
-                        <i class="icon icon-credit"></i>
-                    </span>
-            <span class="jq22-tabBar-item-text">排行</span>
-        </a>
-        <a href="javascript:;" class="jq22-tabBar-item ">
-                    <span class="jq22-tabBar-item-icon">
-                        <i class="icon icon-me"></i>
-                    </span>
+        <a href="{url:'my-order'}" class="jq22-tabBar-item {if $_MODULE == 'my' || $_MODULE == 'login' } jq22-tabBar-item-active {/if}">
+            <span class="jq22-tabBar-item-icon">
+                <i class="icon icon-me"></i>
+            </span>
             <span class="jq22-tabBar-item-text">我的</span>
         </a>
     </footer>

@@ -69,6 +69,6 @@
   ),
   'CACHE_VER' => 2,
   'SYS_NAME' => '在线租车',
-  'static_url' => 'http://127.0.01/zuchev2/static/',
+  'static_url' => 'https://case.isoftware.xyz/carrent/static/',
   'upload_url' => 'https://case.isoftware.xyz/carrent/data/attachment/',
 );

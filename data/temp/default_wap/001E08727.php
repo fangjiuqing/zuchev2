@@ -13,10 +13,10 @@
         var upload_url = "<?php echo(UPLOAD_URL);?>";
     </script>
     <!-- head 中 -->
-    <link rel="stylesheet" href="http://127.0.01/zuchev2/static/style/weui.min.css" />
-    <link rel="stylesheet" href="http://127.0.01/zuchev2/static/style/jquery-weui.min.css" />
-    <link rel="stylesheet" href="http://127.0.01/zuchev2/static/style/iconfont.css" />
-    <link rel="stylesheet" href="http://127.0.01/zuchev2/static/style/common.css" />
+    <link rel="stylesheet" href="https://case.isoftware.xyz/carrent/static/style/weui.min.css" />
+    <link rel="stylesheet" href="https://case.isoftware.xyz/carrent/static/style/jquery-weui.min.css" />
+    <link rel="stylesheet" href="https://case.isoftware.xyz/carrent/static/style/iconfont.css" />
+    <link rel="stylesheet" href="https://case.isoftware.xyz/carrent/static/style/common.css" />
 
     <link href="http://localhost/zuchev2/wap/template/default/css/style.css" rel="stylesheet" type="text/css"/>
 
@@ -42,7 +42,7 @@
   <div class="weui-flex__item">
         <div class="placeholder"> <?php if ($_MODULE != 'index'):?> <span class="fl icon iconfont" onclick="javascript:;history.go(-1);">&#xe6f3;</span> <?php endif;?><span class="logo"><?php if ($title):?><?php echo($title);?><?php else:?>在线租车<?php endif;?></span>
 
-            <span class="fr">
+            <span class="fr" style="margin-top:6px;">
                 <a href="<?php echo(RGX\router::url('my-order-~')); ?>" class="jq22-navBar-item">
                     <i class="icon iconfont">&#xe716;</i>
                 </a>
@@ -65,14 +65,14 @@
                 </div>
             </div>
 
-            <div class="weui-cell">
+            <!-- <div class="weui-cell">
                 <div class="weui-cell__hd">
                     <label for="" class="weui-label"><span class="icon iconfont">&#xe72d;</span>密&nbsp;&nbsp;码</label>
                 </div>
                 <div class="weui-cell__bd">
                     <input class="weui-input" name="data[user_password]" type="password" autocomplete />
                 </div>
-            </div>
+            </div> -->
 
             <div class="weui-cell">
                 <div class="weui-cell__hd">
@@ -90,11 +90,11 @@
     <a href="javascript:;" class="weui-btn weui-btn_primary form-submit">立即登录</a>
 </div>
 
-    <footer class="jq22-footer jq22-footer-fixed" style="display: none">
-        <a href="javascript:;" class="jq22-tabBar-item">
-                    <span class="jq22-tabBar-item-icon">
-                        <i class="icon icon-home"></i>
-                    </span>
+    <footer class="jq22-footer jq22-footer-fixed">
+        <!-- <a href="javascript:;" class="jq22-tabBar-item">
+            <span class="jq22-tabBar-item-icon">
+                <i class="icon icon-home"></i>
+            </span>
             <span class="jq22-tabBar-item-text">看帖</span>
         </a>
         <a href="javascript:;" class="jq22-tabBar-item">
@@ -102,17 +102,17 @@
                         <i class="icon icon-loan"></i>
                     </span>
             <span class="jq22-tabBar-item-text">关注</span>
+        </a> -->
+        <a href="<?php echo(RGX\router::url('index-index')); ?>" class="jq22-tabBar-item <?php if ($_MODULE == 'index'):?> jq22-tabBar-item-active <?php endif;?>">
+            <span class="jq22-tabBar-item-icon">
+                <i class="icon icon-credit"></i>
+            </span>
+            <span class="jq22-tabBar-item-text">预定</span>
         </a>
-        <a href="javascript:;" class="jq22-tabBar-item jq22-tabBar-item-active">
-                    <span class="jq22-tabBar-item-icon">
-                        <i class="icon icon-credit"></i>
-                    </span>
-            <span class="jq22-tabBar-item-text">排行</span>
-        </a>
-        <a href="javascript:;" class="jq22-tabBar-item ">
-                    <span class="jq22-tabBar-item-icon">
-                        <i class="icon icon-me"></i>
-                    </span>
+        <a href="<?php echo(RGX\router::url('my-order')); ?>" class="jq22-tabBar-item <?php if ($_MODULE == 'my' || $_MODULE == 'login'):?> jq22-tabBar-item-active <?php endif;?>">
+            <span class="jq22-tabBar-item-icon">
+                <i class="icon icon-me"></i>
+            </span>
             <span class="jq22-tabBar-item-text">我的</span>
         </a>
     </footer>
@@ -171,9 +171,9 @@
 <script type="text/javascript" src="http://localhost/zuchev2/wap/template/default/js/scrollTab.js"></script>
 <script type="text/javascript" src="http://localhost/zuchev2/wap/template/default/js/slider.js"></script>
 <script type="text/javascript" src="http://localhost/zuchev2/wap/template/default/js/layer.js"></script>
-<script src="http://127.0.01/zuchev2/static/js/libs/layer/mobile/layer.js"></script>
+<script src="https://case.isoftware.xyz/carrent/static/js/libs/layer/mobile/layer.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
-<script src="http://127.0.01/zuchev2/static/js/jquery.tools.js"></script>
+<script src="https://case.isoftware.xyz/carrent/static/js/jquery.tools.js"></script>
 
 <script type="text/javascript">
     /** 刷新验证码 */
