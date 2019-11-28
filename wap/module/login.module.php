@@ -38,6 +38,11 @@ class login_module extends base_module {
         $sms_code = $_SESSION['sms_code'];
         $verify_code = $this->get('verify_code' , 'p');
 
+        if ( !$sms_code || !$verify_code ) {
+            $result['msg'] = '验证码错误';
+            $this->ajaxout($result);
+        }
+
         if ( $sms_code == $verify_code ) {
             $redirect = $this->get('redirect' , 'p');
             if ( $redirect ) {
