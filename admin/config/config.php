@@ -13,7 +13,7 @@ return [
         ],
     ],
    'CACHE_VER'  => 2,
-   'SYS_NAME'  => '在线租车',
+   'SYS_NAME'  => '我要租车',
    'tpl'        => [
       'style'     => 'default',
       '404_tpl'   => '404.tpl',
