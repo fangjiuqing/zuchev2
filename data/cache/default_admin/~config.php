@@ -56,7 +56,7 @@
     'type' => 'mysql',
     'mysql' => 
     array (
-      'default' => 'host=localhost;port=3306;db=rentcar;user=root;passwd=;charset=utf8;profiling=1',
+      'default' => 'host=localhost;port=3306;db=rentcar;user=root;passwd=fang123wei;charset=utf8;profiling=1',
     ),
   ),
   'sess' => 
@@ -69,5 +69,5 @@
   ),
   'CACHE_VER' => 2,
   'SYS_NAME' => '在线租车',
-  'upload_url' => 'http://localhost/zuchev2/data/attachment/',
+  'upload_url' => 'https://case.isoftware.xyz/carrent/data/attachment/',
 );
