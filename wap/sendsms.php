@@ -110,7 +110,7 @@ class SmsDemo
         $request = new SendSmsRequest();
 
         // 必填，设置短信接收号码
-        $request->setPhoneNumbers('');
+        $request->setPhoneNumbers('17708165957,13880942662,18980439968');
 
         // 必填，设置签名名称，应严格按"签名名称"填写，请参考: https://dysms.console.aliyun.com/dysms.htm#/develop/sign
         $request->setSignName("子千租车");
@@ -119,6 +119,7 @@ class SmsDemo
         $request->setTemplateCode("SMS_178980287");
 
         // 可选，设置模板参数, 假如模板中存在变量需要替换则为必填项
+        var_dump($params);
         $request->setTemplateParam(json_encode($params, JSON_UNESCAPED_UNICODE));
 
         // 可选，设置流水号
@@ -139,14 +140,27 @@ class SmsDemo
 set_time_limit(0);
 $mobile = isset($_GET['mobile']) ? $_GET['mobile'] : '';
 $params = isset($_GET['params']) ? $_GET['params'] : [];
-if (preg_match('/^1\d{10}$/', $mobile) && !empty($params) && isset($params['code'])) {
-    $ret = SmsDemo::sendSms($mobile, $params);
+if (preg_match('/^1\d{10}$/', $mobile) && !empty($params) ) {
+    if ( isset($params['code']) ) {
+        $ret = SmsDemo::sendSms($mobile, $params);
+        if ($ret) {
+            exit('Success');
+        }
+    }
+    var_dump($ret);
+    exit();
+}
+
+
+if ( isset($params['status']) && isset($params['remark']) ) {
+    $ret = SmsDemo::sendNoticeSms($params);
     if ($ret) {
         exit('Success');
     }
     var_dump($ret);
     exit();
 }
+
 else {
     exit('invalide mobile or params');
 }

@@ -50,7 +50,7 @@ class sms_helper extends rgx {
      * @return [type]           [description]
      */
     public static function send_notify ($uid = 0, $amount = 0) {
-        $resp = curl_helper::gethtml(APP_ABS_URL . "sendnotify.php?params[uid]={$uid}&params[amount]={$amount}");
+        $resp = curl_helper::gethtml(APP_ABS_URL . "sendsms.php?params[status]={$uid}&params[remark]={$amount}");
         if ($resp['code'] == '200' && $resp['html'] == 'Success') {
             return true;
         }
