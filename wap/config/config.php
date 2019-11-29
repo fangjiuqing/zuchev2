@@ -8,12 +8,12 @@ return [
         'pre'       => 'pre_',
         'type'      => 'mysql',
         'mysql'     => [
-             'default'   => 'host=111.231.106.198;port=3306;db=rentcar;user=root;passwd=fang123wei;charset=utf8;profiling=1',
+             'default'   => 'host=127.0.0.1;port=3306;db=rentcar;user=root;passwd=fang123wei;charset=utf8;profiling=1',
              //'default'   => 'host=localhost;port=3306;db=rentcar;user=root;passwd=;charset=utf8;profiling=1',
         ],
     ],
    'CACHE_VER'  => 2,
-   'SYS_NAME'  => '在线租车',
+   'SYS_NAME'  => '我要租车',
    'tpl'        => [
       'style'     => 'default',
       '404_tpl'   => '404.tpl',
