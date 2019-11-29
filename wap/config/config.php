@@ -26,8 +26,8 @@ return [
       'charset'   => 'utf-8',
       'allow_php' => false
   ],
-  'static_url'  => 'https://case.isoftware.xyz/carrent/static/',
-  'upload_url'  => 'https://case.isoftware.xyz/carrent/data/attachment/',
+  'static_url'  => 'http://47.108.136.102/static/',
+  'upload_url'  => 'http://47.108.136.102/data/attachment/',
   //'static_url'  => 'http://127.0.01/zuchev2/static/',
   // 'upload_url'  => 'http://127.0.01/zuchev2/data/attachment/',
 ];
