@@ -1,10 +1,12 @@
 .DS_Store
 *.log.php
 data/temp/*
+data/temp/default_admin/*
 data/cache/*
+data/temp/default_admin/*
 data/log/*
 wap/config/config.php
 admin/config/config.php
 config.php
-data/cache/default_admin/\~config.php
+data/cache/default_admin/~config.php
 data/cache/default_wap/~config.php
