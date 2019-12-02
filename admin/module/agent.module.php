@@ -74,8 +74,8 @@ class agent_module extends admin_module {
         # all agents
         $order_tab = RGX\OBJ('order_table');
         $tab->map(function($row) use ($order_tab) {
-            $row['agent_order_nums'] = $order_tab->where("order_agent_id = " . $row['agent_id'])->count();
-            $sum = $order_tab->fields('SUM(order_amount) as total_count')->where("order_agent_id = " . $row['agent_id'])->get();
+            $row['agent_order_nums'] = $order_tab->where('order_status = 4')->where("order_agent_id = " . $row['agent_id'])->count();
+            $sum = $order_tab->fields('SUM(order_amount) as total_count')->where('order_status = 4')->where("order_agent_id = " . $row['agent_id'])->get();
             $row['agent_order_amount'] = $sum['total_count'];
 
             return $row;

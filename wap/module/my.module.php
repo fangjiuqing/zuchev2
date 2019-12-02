@@ -112,7 +112,7 @@ class my_module extends user_module {
     }
 
     /**
-     * 订单提交
+     * 订单提交   无用
      * @return [type] [description]
      */
     public function submit_action () {

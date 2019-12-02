@@ -46,7 +46,7 @@
                                         <td>{$v['agent_order_nums']|int}</td>
                                         <td class="text-warning">￥{$v['agent_order_amount']|int}</td>
                                         <td>
-                                            {url:'index-index-agent-%d~' , $v['agent_id']}
+                                            http://h5.zqzc8888.com/wap/index.php/index.html?agent={$v['agent_id']}
                                         </td>
                                         <td class="agent-operate">
                                             <a href="{url:'agent-del-id-%d' , $v['agent_id']}" data-confirm="操作不可撤销，确认吗？" data-target="#item-{$v['agent_id']}" class="btn btn-xs btn-danger btn-delete">

@@ -6,25 +6,25 @@ namespace re\rgx;
  * $Id: router.class.php 733 2017-11-21 02:29:28Z reginx $
  */
 class router extends rgx {
-    
+
     /**
      * module name
      * @var unknown
      */
     private static $_mod = 'index';
-    
+
     /**
      * action name
      * @var unknown
      */
     private static $_act = 'index';
-    
+
     /**
      * request params
      * @var unknown
      */
     private static $_request_params = [];
-    
+
     /**
      * get module class name
      * @return string
@@ -63,7 +63,7 @@ class router extends rgx {
 
         return (APP_NAME == 'default' ? '' : (APP_NAME . ':')) .  implode('-', $temp);
     }
-    
+
 
     /**
      * get request param
@@ -73,7 +73,7 @@ class router extends rgx {
     public static function get ($key, $scrope = 'r') {
         return self::_get_request_param($key, $scrope);
     }
-    
+
     /**
      * exists
      * @param unknown $key
@@ -83,7 +83,7 @@ class router extends rgx {
     public static function exists ($key, $scrope = 'r') {
         return self::_get_request_param($key, $scrope, false);
     }
-    
+
     /**
      * Get Request Params
      * @param unknown $key
@@ -116,8 +116,8 @@ class router extends rgx {
         }
         return $fetch ? ($key === null ? $var : (isset($var[$key]) ? $var[$key] : null)) : isset($var[$key]);
     }
-    
-    
+
+
     public static function parse_cli () {
         $pathinfo = getenv('request_uri') ?: (isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : null);
         if (empty($pathinfo)) {
@@ -138,7 +138,7 @@ class router extends rgx {
 
         parse_str($qs ?: '', self::$_request_params);
     }
-    
+
     /**
      * parse url
      * @param unknown $config
@@ -296,12 +296,12 @@ class router extends rgx {
         if (!empty($params)) {
             $params = $config['ap_sep'] . join($config['pg_sep'], $params);
         }
-        
+
         $script_file = $config['rewrite'] ? '' : 'index.php/';
         $params  = $params ?: '';
 
-        $url_str = "{$prefix}{$script_file}{$module}" . 
-                    (empty($action) ? '' : ($config['ma_sep'] . $action)) . 
+        $url_str = "{$prefix}{$script_file}{$module}" .
+                    (empty($action) ? '' : ($config['ma_sep'] . $action)) .
                     "{$params}{$suffix}";
 
         return vsprintf($url_str, array_slice($input, 1));

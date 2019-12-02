@@ -49,6 +49,7 @@ class order_module extends base_module {
             $this->redirect('index');
         }
 
+        $this->assign('agent_id' , $this->get('agent'));
         $car_info = RGX\OBJ('car_table')->where("car_id = $car_id")->get();
         $this->assign('car_info' , $car_info);
         $this->display('order/confirm.tpl');
@@ -163,9 +164,9 @@ class order_module extends base_module {
             $data['order_title'] = $car_info['car_name'];
             $data['order_amount'] = $car_info['car_rent_price'] * $data['order_duration_days'];
             if ( $data['order_amount'] <= 0 ) {
-		$result['msg'] = '下单异常，请选择车辆或取还车日期！';
-		$this->ajaxout($result);
-	    }
+        		$result['msg'] = '下单异常，请选择车辆或取还车日期！';
+        		$this->ajaxout($result);
+    	    }
 	    //$data['order_user_id'] = $this->login_user_id;
             $data['order_create_date'] = $nowdaytime;
             $data['order_status'] = RGX\common_helper::STATUS_WAITING;
@@ -182,7 +183,7 @@ class order_module extends base_module {
                 $result['url']  = RGX\router::url('index');
 
                 ## 发送业务短信
-                RGX\sms_helper::send_notify($data['order_user_mobile'], $data['order_amount']);
+                //RGX\sms_helper::send_notify($data['order_user_mobile'], $data['order_amount']);
             }
         }
 
