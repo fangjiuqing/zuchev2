@@ -183,7 +183,7 @@ class order_module extends base_module {
                 $result['url']  = RGX\router::url('index');
 
                 ## 发送业务短信
-                //RGX\sms_helper::send_notify($data['order_user_mobile'], $data['order_amount']);
+                RGX\sms_helper::send_notify($data['order_user_mobile'], $data['order_amount']);
             }
         }
 
