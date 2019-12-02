@@ -1,0 +1,20 @@
+<div class="weui-flex">
+  <div class="weui-flex__item">
+        <div class="placeholder">
+            {if $_MODULE != 'index'}
+            <span class="fl icon iconfont" onclick="javascript:;history.go(-1);">&#xe6f3;</span>
+            {/if}
+            <span class="logo">{if $title}{$title}{else}{__SYS_NAME__}{/if}</span>
+
+            <span class="fr" style="margin-top:6px;">
+                <a href="{url:'my-order-~'}" class="jq22-navBar-item">
+                    <i class="icon iconfont">&#xe716;</i>
+                </a>
+            </span>
+            {if $right_link}
+            <span class="fr">{$right_link}</span>
+            {/if}
+        </div>
+    </div>
+</div>
+

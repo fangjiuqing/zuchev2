@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$page_title ? : '首页'}-{__SYS_NAME__}</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <script type="text/javascript">
+        var login_url = "{url:'login-submit-~'}";
+        var check_login = "{url:'login-check-~'}";
+        var upload_url = "{:UPLOAD_URL}";
+    </script>
+    <!-- head 中 -->
+    <link rel="stylesheet" href="{__STATIC_URL__}style/weui.min.css" />
+    <link rel="stylesheet" href="{__STATIC_URL__}style/jquery-weui.min.css" />
+    <link rel="stylesheet" href="{__STATIC_URL__}style/iconfont.css" />
+    <link rel="stylesheet" href="{__STATIC_URL__}style/common.css" />
+
+    <link href="{__CTPL_URL__}css/style.css" rel="stylesheet" type="text/css"/>
+
+    <style type="text/css">
+        .weui-cell {
+            padding:6px 15px;
+        }
+    </style>

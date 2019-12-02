@@ -1,0 +1,83 @@
+<!--{include common/meta.inc}-->
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <!--{include common/crumb.inc}-->
+                    <div class="ibox-content">
+                        <!--{include common/filter.tpl}-->
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="checkall" {if empty($list)} disabled="disabled" {/if} /></th>
+                                        <th>订单编号</th>
+                                        <th>订单标题</th>
+                                        <th>订单金额</th>
+                                        <th>订单详情</th>
+                                        <th>订单状态</th>
+                                        <th>下单日期</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {if empty($list)}
+                                    <tr>
+                                        <table>
+                                            <tr><td>暂无数据</td></tr>
+                                        </table>
+                                    </tr>
+                                    {/if}
+                                    {foreach $list $k $v}
+                                    <tr id="item-{$v['order_id']}">
+                                        <td>
+                                            <input type="checkbox" class="i-checks" value="{$v['order_id']}" />
+                                        </td>
+
+                                        <td>
+                                            <a title="编辑{$v['order_title']}" href="{url:'order-add-id-%d' , $v['order_id']}">{$v['order_no']}</a>
+                                        </td>
+                                        <td>{$v['order_title']}</td>
+                                        <td class="text-warning">￥{$v['order_amount']}</td>
+                                        <td>
+                                            <p>租车人：{$v['order_user_fullname']}</p>
+                                            <p>手机号：{$v['order_user_mobile']}</p>
+                                            <p>取：{$v['order_start_time']} - 还：{$v['order_end_time']}</p>
+                                            <p>共计：{$v['order_duration_days']}天</p>
+                                        </td>
+                                        <td>
+                                            <span class="btn btn-xs {if $v['order_status'] == 1}btn-primary {else if $v['order_status'] == 2} btn-wanning {else if $v['order_status'] == 3} btn-default {else if $v['order_status'] == 4} btn-success {else} btn-default{/if}">
+                                            {$order_type[$v['order_status']]}
+                                            </span>
+                                        </td>
+
+                                        <td class="order-operate">
+                                            {$v['order_create_date']}
+                                        </td>
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--{include common/pagination.inc}-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--{include common/js.inc}-->
+    <script src="{__CTPL_URL__}js/filter.js"></script>
+    <script type="text/javascript">
+        $('.order-operate a').on('click' , function() {
+            var order_id = $(this).attr('data-oid');
+            var order_status = $(this).attr('data-status');
+            var url = "{url:'order-change-status-#SAT#-id-~'}" + order_id;
+            url = url.replace('#SAT#' , order_status);
+            console.log(url);
+        });
+    </script>
+</body>
+
+<!--{include common/footer.inc}-->

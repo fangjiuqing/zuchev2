@@ -1,0 +1,81 @@
+<style type="text/css">
+	.pagination li {
+	    display: block;
+	    float: left;
+	    background: #fff;
+	    border: none;
+	    border-radius: 0;
+	}
+	.paging_jump {
+	    width: 90px;
+        margin-left: 16px;
+	}
+	.paging_jump .input-group {
+	    width: 100%;
+	}
+
+	.paging_jump .input-group .form-control {
+	    -webkit-box-shadow: none;
+	    box-shadow: none;
+	}
+    .page-wrap {
+        text-align: center;
+        padding-top: 18px;
+    }
+</style>
+<div class="page-wrap">
+    <!--{if $pobj['total'] && $pobj['max'] > 1}-->
+    <ul class="pagination pagination-sm">
+        <!--{if $pobj['prev']}-->
+        <li>
+            <a class="pagination-atag" href="{url:($pobj['url'] . "-pn-%d", $pobj['prev'])}" aria-label="Previous" data-pn="{$pobj['prev']}">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <!--{else}-->
+        <li class="disabled">
+            <a class="pagination-atag" href="javascript:;" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <!--{/if}-->
+        <li class="{$pobj['pn'] == 1 ? 'active' : ''}">
+            <a class="pagination-atag" href="{url:($pobj['url'] . "-pn-1")}" data-pn="1">1</a>
+        </li>
+        <!--{foreach $pobj['link'] $k $v}-->
+        <!--{if $v > 1 && $v < $pobj['max']}-->
+        <li class="{$pobj['pn'] == $v ? 'active' : ''}">
+            <a class="pagination-atag" href="{if is_numeric($v)}{url:$pobj['url'] . '-'.$pobj['var'].'-%d' , $v}{else}javascript:void(0);{/if}" data-pn="{$v}">{$v}</a>
+        </li>
+        <!--{/if}-->
+        <!--{/foreach}-->
+        <!--{if $pobj['max'] > 1}-->
+        <li class="{$pobj['pn'] == $pobj['max'] ? 'active' : ''}">
+            <a class="pagination-atag" href="{url:($pobj['url'] . "-pn-%d", $pobj['max'])}" data-pn="{$pobj['max']}">{$pobj['max']}</a>
+        </li>
+        <!--{/if}-->
+        <!--{if $pobj['next']}-->
+        <li>
+            <a class="pagination-atag" href="{url:($pobj['url'] . "-pn-%d", $pobj['next'])}" aria-label="Next" data-pn="{$pobj['next']}">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        <!--{else}-->
+        <li class="disabled">
+            <a class="pagination-atag" href="javascript:;" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        <!--{/if}-->
+        <li class="clearfix"></li>
+    </ul>
+    <!--{else}-->
+    <ul class="pagination pagination-sm">
+        <li class="active">
+            <a class="pagination-atag" href="javascript:;" >
+                1
+            </a>
+        </li>
+    </ul>
+    <!--{/if}-->
+</div>

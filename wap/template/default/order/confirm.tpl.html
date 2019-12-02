@@ -1,0 +1,206 @@
+{include common/header.inc}
+<style type="text/css">
+    .disabled {
+        background-color: #cfcfcf;
+    }
+</style>
+</head>
+
+<body ontouchstart>
+{include common/topbar.inc}
+
+<div class="wraper">
+    <div class="weui-cells weui-cells_form">
+        <form action="{url:'order-submit'}" method="post" id="sform" enctype="multipart/form-data">
+            <input type="hidden" name="data[order_car_id]" value="{$car_info['car_id']}" />
+            <input type="hidden" name="data[order_agent_id]" id="agent_id" value="{$agent_id}" />
+            <input type="hidden" name="data[order_duration_days]" id="order_duration_days" value="0" />
+            <!-- <div class="weui-cells__title">租车预定</div> -->
+            <!-- <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">用户信息</label>
+                <em class="weui-form-preview__value">&nbsp;</em>
+            </div> -->
+            <div class="weui-cell" >
+                <div class="weui-cell__hd">
+                    <label class="weui-label">联系姓名</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="data[order_user_fullname]" id="fullname" placeholder="请输入联系人" value="{$user['user_name']}">
+                </div>
+            </div>
+
+            <div class="weui-cell" >
+                <div class="weui-cell__hd">
+                    <label class="weui-label">驾驶证号</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="data[order_user_license]" id="license" placeholder="驾驶证号" value="{$user['user_license']}">
+                </div>
+            </div>
+
+            <div class="weui-cell" >
+                <div class="weui-cell__hd">
+                    <label class="weui-label">学生学号</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="data[order_user_sno]" id="sno" placeholder="请输入学生学号" value="{$user['user_sno']}">
+                </div>
+            </div>
+
+            <div class="weui-cell" >
+                <div class="weui-cell__hd">
+                    <label class="weui-label">所在学校</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name=data[order_user_sname] id="sname" placeholder="请输入所在学校" value="{$user['user_sname']}">
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">取车时间</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input datetime-picker cal-price" name="data[order_start_time]" id="start_time" type="date" placeholder="取车时间" />
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">还车时间</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input datetime-picker cal-price" name=data[order_end_time] id="end_time" type="date" placeholder="还车时间" />
+                </div>
+            </div>
+
+            <div class="weui-cell" id="mobilewarning" >
+                <div class="weui-cell__hd">
+                    <label class="weui-label">手机号码</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="tel" name="data[order_user_mobile]" id="mobile" placeholder="请输入手机号" value="{$user['user_mobile']}">
+                </div>
+                <!-- <div class="weui-cell__ft">
+                    <a class="weui-vcode-btn generate-sms-code">验证码</a>
+                </div> -->
+            </div>
+
+            <!-- <div class="weui-cell" >
+                <div class="weui-cell__hd">
+                    <label class="weui-label">验证码</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="verifycode" id="verifycode" placeholder="请输入验证码">
+                </div>
+            </div> -->
+
+        </form>
+    </div>
+
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-form-preview">
+            <!-- <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">车辆信息</label>
+                <em class="weui-form-preview__value">&nbsp;</em>
+            </div> -->
+
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">已选车辆</label>
+                    <span class="weui-form-preview__value">{$car_info['car_name']}</span>
+                </div>
+
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">车型备注</label>
+                    <span class="weui-form-preview__value">{$car_info['car_tag']}</span>
+                </div>
+
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">日均价</label>
+                    <span class="weui-form-preview__value">￥{$car_info['car_rent_price']}/天</span>
+                </div>
+
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">订单金额</label>
+                    <span class="weui-form-preview__value">
+                        <em id="cal-form"></em>
+                        ￥<em id="order_amount">0</em>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-form-preview__ft">
+        <a class="weui-form-preview__btn weui-form-preview__btn_default" href="{url:'index'}">返回修改</a>
+    </div>
+    <a href="javascript:;" class="weui-btn weui-btn_primary order-submit" data-before="check_form">提交订单</a>
+</div>
+
+{include common/footer.inc}
+<script type="text/javascript">
+    var per_day_price = "{$car_info['car_rent_price']}";
+
+    $('.cal-price').on('blur' , function() {
+        st = $('#start_time').val();
+        et = $('#end_time').val();
+        if ( st && et ) {
+            var duration = $.diffDays(st,et);
+            $('#cal-form').text(per_day_price + '元 x ' + duration + '天 = ');
+            $('#order_amount').text(per_day_price * duration);
+
+            $("#order_duration_days").val(duration);
+        }
+    });
+
+    $('.generate-sms-code').on('click' , function() {
+        var mobile = $('#mobile').val();
+        if(!(/^1[3456789]\d{9}$/.test(mobile))){
+            layer.open({
+                content: '手机号格式错误'
+                ,btn: '我知道了'
+            });
+        }else{
+            $(this).css('color' , '#000').text('8712');
+        }
+    });
+
+    /** 订单提交 */
+    $('.order-submit').on('click' , function() {
+        var form = $('#sform');
+
+        $.ajax({
+            type: form.attr('method'),
+            dataType: 'json',
+            processData: false,
+            data: form.serialize(),
+            url: form.attr('action'),
+            success: function(data, textStatus, xhr) {
+                console.log(data)
+                if ( data.code == 200 ) {
+                    layer.open({
+                        content: '下单成功，请等待系统审核'
+                        ,btn: '我知道了'
+                        ,yes: function(index) {
+                            if ( data.url != undefined ) {
+                                location.href = data.url
+                            }
+                        }
+                    });
+                }else{
+                    layer.open({
+                        content: data.msg
+                        ,btn: '我知道了'
+                    });
+                }
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                $.toast('请稍后重试', 'forbidden');
+            }
+        })
+    });
+
+</script>
+</body>
+</html>
