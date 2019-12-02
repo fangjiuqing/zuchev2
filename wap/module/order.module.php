@@ -129,7 +129,7 @@ class order_module extends base_module {
         if ( !empty($car_info) ) {
             //if ( empty($data['order_user_mobile']) ) {
 	    $data['order_user_mobile'] = trim($data['order_user_mobile']);
-	    if ( preg_match('/^1[3456789]{1}\d{9}$/', $data['order_user_mobile']) ) {
+	    if ( !preg_match('/^1[3456789]{1}\d{9}$/', $data['order_user_mobile']) ) {
                 $result['msg'] = '手机号必填';
                 $this->ajaxout($result);
             }
@@ -139,15 +139,15 @@ class order_module extends base_module {
                 $this->ajaxout($result);
             }
 
-            if ( empty($data['order_user_sno']) ) {
-                $result['msg'] = '学号必填';
-                $this->ajaxout($result);
-            }
+           // if ( empty($data['order_user_sno']) ) {
+             //   $result['msg'] = '学号必填';
+               // $this->ajaxout($result);
+           // }
 
-            if ( empty($data['order_user_sname']) ) {
-                $result['msg'] = '所在学校必填';
-                $this->ajaxout($result);
-            }
+           // if ( empty($data['order_user_sname']) ) {
+             //   $result['msg'] = '所在学校必填';
+               // $this->ajaxout($result);
+           // }
 
             if ( empty($data['order_user_license']) ) {
                 $result['msg'] = '驾照信息必填';
