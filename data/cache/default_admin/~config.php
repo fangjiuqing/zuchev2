@@ -68,6 +68,6 @@
     ),
   ),
   'CACHE_VER' => 2,
-  'SYS_NAME' => '在线租车',
+  'SYS_NAME' => '我要租车',
   'upload_url' => 'https://case.isoftware.xyz/carrent/data/attachment/',
 );
