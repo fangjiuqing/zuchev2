@@ -85,8 +85,8 @@ class misc_module extends base_module {
      * @return [type] [description]
      */
     public function logout_action () {
-        $this->sess();
-        $this->sess_remove();
+        session_start();
+        session_destroy();
         $this->redirect('login');
     }
 

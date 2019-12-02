@@ -11,7 +11,6 @@ class index_module extends base_module {
 
         $agent = $this->get('agent') ? : 0;
         $this->assign('agent' , $agent);
-
         $this->assign('title' , '车型列表');
         $car_type = RGX\common_helper::$car_type;
         $this->assign('car_type' , $car_type);

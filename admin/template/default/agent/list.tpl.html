@@ -19,6 +19,7 @@
                                         <th>代理级别</th>
                                         <th>代理订单数</th>
                                         <th>代理订单金额</th>
+                                        <th>推广二维码(复制链接地址去<a href="https://cli.im/url" target="_blank">生成</a>)</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
@@ -44,7 +45,9 @@
                                         <td>{$agent_type[$v['agent_level']]}</td>
                                         <td>{$v['agent_order_nums']|int}</td>
                                         <td class="text-warning">￥{$v['agent_order_amount']|int}</td>
-
+                                        <td>
+                                            {url:'index-index-agent-%d~' , $v['agent_id']}
+                                        </td>
                                         <td class="agent-operate">
                                             <a href="{url:'agent-del-id-%d' , $v['agent_id']}" data-confirm="操作不可撤销，确认吗？" data-target="#item-{$v['agent_id']}" class="btn btn-xs btn-danger btn-delete">
                                                 <i class="fa fa-trash-o"></i>
