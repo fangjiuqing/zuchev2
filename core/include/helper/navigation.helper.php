@@ -41,6 +41,15 @@ class navigation_helper extends rgx {
                 ['url' => 'user-add' ,   'name' => '新增用户'],
             ],
         ],
+
+        [
+            'name'   =>    '账号管理',
+            'icon'   =>    'fa fa-map-o',
+            'urls'    =>   [
+                ['url' => 'account-index' ,  'name' => '账号列表'],
+                ['url' => 'account-add' ,   'name' => '新增账号'],
+            ],
+        ],
     ];
 
     /**
